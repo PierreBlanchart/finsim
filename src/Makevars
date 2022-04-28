@@ -1,0 +1,51 @@
+R_HOME=/home/pb232802/R/x86_64-pc-linux-gnu-library/3.4/
+CUDA_PATH=/usr/local/cuda-11.1/targets/x86_64-linux
+
+CXX = g++
+# CXXFLAGS = -O3 -msse3
+CXXFLAGS = -fopenmp
+CXX_STD = CXX11
+
+PKG_CFLAGS=
+
+PKG_CXXFLAGS=$(SHLIB_OPENMP_CXXFLAGS)
+PKG_CPPFLAGS+=-I$(CUDA_PATH)/include
+
+PKG_LIBS = $(SHLIB_OPENMP_CXXFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+
+PKG_LIBS+=-L$(CUDA_PATH)/lib
+PKG_LIBS+= -lcudart -lcurand
+
+MAKEFLAGS=-j16
+
+NVCC=/usr/local/cuda-11.1/bin/nvcc
+# NVCC_FLAGS=-Xcompiler "-fPIC" -I/usr/share/R/include -I$(R_HOME)/Rcpp/include/ -I$(R_HOME)/RcppArmadillo/include/
+
+
+# define targets
+CPPSOURCES=$(wildcard *.cpp) #./knn.cpp ./interface.cpp ./stacked_nn.cpp ./RcppExports.cpp
+CUSOURCES=$(wildcard *.cu)
+
+# Obtain the object files
+OBJECTS=$(CPPSOURCES:.cpp=.o) $(CUSOURCES:.cu=.o)
+#OBJECTS=$(CPPSOURCES:.cpp=.o)
+
+# Make the shared object
+all: $(SHLIB)
+
+%.o: %.cu $(CUSOURCES)
+#	bash compile_cu.sh
+	$(NVCC) --compiler-options -fPIC -I$(CUDA_PATH)/include $< -c
+
+#%.o: %.cpp $(CPPSOURCES)
+#	$(CXX) $< -c -fPIC -I$(CUDA_PATH)/include -I$(R_HOME)/Rcpp/include/ -I$(R_HOME)/RcppArmadillo/include/
+%.o: %.cpp $(CPPSOURCES)
+	$(CXX) $< -c -O3 -fPIC -fopenmp -I/usr/share/R/include \
+	-DNDEBUG $(PKG_CPPFLAGS) -I$(R_HOME)/Rcpp/include -I$(R_HOME)/RcppArmadillo/include \
+	-fdebug-prefix-map=/build/r-base-AitvI6/r-base-3.4.4=. -fstack-protector-strong \
+	-Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2
+
+# Provide recipe to remove all objects
+clean:
+	@rm -f $(OBJECTS)
+
