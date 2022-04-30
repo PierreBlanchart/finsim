@@ -2,7 +2,7 @@
 
 A package for financial modeling, and simulation of stochastic processes such as encountered in finance, e.g. Geometric Brownian Motions (Black-Scholes asset modeling) and Jump Decision Processes (Merton asset modeling).
 
-This R-cpp package mostly allows to reproduce the graphics of the blogpost [Financial modeling: a simple statistical point of view](https://medium.com/towards-data-science/financial-modeling-a-clean-short-and-simple-statistical-point-of-view-853dc29efb00). This blogpost explains how to derive the main results of financial modeling such as option pricing under the Black-Scholes model (European and American exercise styles), hedging, portfolio optimization, jump assets models, exotic options pricing using simulation ...
+This R-cpp package mostly allows to reproduce the graphics of the blogpost [Financial modeling: a simple statistical point of view](https://medium.com/@pierre.blanchart/financial-modeling-a-clean-short-and-simple-statistical-point-of-view-853dc29efb00). This blogpost explains how to derive the main results of financial modeling such as option pricing under the Black-Scholes model (European and American exercise styles), hedging, portfolio optimization, jump diffusion asset pricing models, exotic options pricing using simulation ...
 
 
 ## Install instructions
@@ -25,7 +25,7 @@ R CMD INSTALL -l /INSTALL_PATH ./ --preclean
 ## Demos
 
 Demos scripts are in the folder ./demos.
-There are 9 demo scripts which allow to reproduce the graphics of the blogpost. Plus two additional demos showing how to use cuda kernels to perform simulation of asset evolution under Black-Scholes and Merton models.
+There are 9 demo scripts which allow to reproduce the graphics of the blog post. Plus two additional demos showing how to use cuda kernels to perform simulation of asset evolution under Black-Scholes and Merton models.
 
 I refer you to the blog for the figures.
 
@@ -39,11 +39,11 @@ I refer you to the blog for the figures.
 
 3. ./demos/gen_fig3.R: Determining numerically the optimal exercise price for American options.
 
-![Alt text](./figures/fig5.png?raw=true "Opimal exercise price for american options")
+![Alt text](./figures/fig5.png?raw=true "Optimal exercise price for american options")
 
-4. ./demos/gen_fig4.R: Realization of a jump decision process over a definite time horizon.
+4. ./demos/gen_fig4.R: Realization of a jump diffusion process over a definite time horizon.
 
-![Alt text](./figures/fig2.png?raw=true "Realization of a jump decision process over a definitie time horizon")
+![Alt text](./figures/fig2.png?raw=true "Realization of a jump diffusion process over a definite time horizon")
 
 5. ./demos/gen_fig5.R: Log-normal law from trajectory simulations.
 
