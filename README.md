@@ -1,8 +1,8 @@
 # Financial modeling
 
-A package for financial modeling, and simulation of stochastic processes such as encountered in finance, e.g. Geometric Brownian Motions (Black-Scholes asset modeling) and Jump Decision Processes (Merton asset modeling).
+A package for financial modeling, and simulation of stochastic processes such as encountered in finance, e.g. Geometric Brownian Motions (Black-Scholes asset modeling) and Jump Diffusion Processes (Merton asset modeling).
 
-This R-cpp package mostly allows to reproduce the graphics of the blogpost [Financial modeling: a simple statistical point of view](https://medium.com/@pierre.blanchart/financial-modeling-a-clean-short-and-simple-statistical-point-of-view-853dc29efb00). This blogpost explains how to derive the main results of financial modeling such as option pricing under the Black-Scholes model (European and American exercise styles), hedging, portfolio optimization, jump diffusion asset pricing models, exotic options pricing using simulation ...
+This R-cpp package mostly allows to reproduce the graphics of the blogpost [Financial Modeling: A Clean, Short and Simple Statistical Point of View](https://www.cantorsparadise.com/financial-modeling-a-clean-short-and-simple-statistical-point-of-view-853dc29efb00). This blogpost explains how to derive the main results of financial modeling such as option pricing under the Black-Scholes model (European and American exercise styles), hedging, portfolio optimization, jump diffusion asset pricing models, exotic options pricing using simulation ...
 
 
 ## Install instructions
@@ -61,6 +61,6 @@ I refer you to the blog for the figures.
 Comparison between the European call option value as computed using the BS analytic formula, and the estimated value obtained by GPU simulations.
 
 9. ./demos/sim_cuda_JDP.R: 
-GPU sampling of trajectories of a Jump decision process (Merton models), and plotting the distribution of realizations at exercise time.
+GPU sampling of trajectories of a Jump diffusion process (Merton models), and plotting the distribution of realizations at exercise time.
 
 
